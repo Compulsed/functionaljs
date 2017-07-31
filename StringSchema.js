@@ -46,6 +46,7 @@ class RandomDie {
 
 // Resolvers
 var rootValue = {
+    // resolvers, has type & args in object based schema
     hello: (args, context, info, ...others) => {
         args;
         context;
