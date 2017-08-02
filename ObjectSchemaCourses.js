@@ -36,7 +36,10 @@ var schemaByObjects = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Root',
     fields: {
+        course: rootFieldByID('courseId', 'course'),
+        section: rootFieldByID('sectionId', 'section'),
         component: rootFieldByID('componentId', 'component'),
+        content: rootFieldByID('contentId', 'content'),
     },
   })
 });
@@ -45,7 +48,23 @@ const run = async () => {
   var queryByObjects = `
     {
         component (componentId: "csa-section-1-component-1") {
-            title
+          title
+        }
+
+        section (sectionId: "csa-section-1") {
+          title
+        }
+
+        course (courseId: "aws-csa") {
+          title
+        }
+
+        content (contentId: "123-123-123-124") {
+          contentId
+          videosources {
+            key
+            bucket
+          }
         }
     }
     `;

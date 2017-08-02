@@ -14,7 +14,7 @@ const type = new GraphQLObjectType({
   fields: () => ({
     title: {
       type: GraphQLString,
-      description: 'The title of component.',
+      description: 'The title of a component.',
     }
   })
 });

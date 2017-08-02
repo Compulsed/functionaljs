@@ -1,9 +1,23 @@
 const _ = require('lodash');
 const BbPromise = require('bluebird');
 
-const type = {
+const {
+  GraphQLInt,
+  GraphQLList,
+  GraphQLObjectType,
+  GraphQLString,
+} = require('graphql');
 
-}
+const type = new GraphQLObjectType({
+  name: 'Course',
+  description: 'A Course',
+  fields: () => ({
+    title: {
+      type: GraphQLString,
+      description: 'The title of a course.',
+    }
+  })
+});
 
 const courses = [
     {

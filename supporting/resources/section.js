@@ -1,9 +1,22 @@
 const _ = require('lodash');
 const BbPromise = require('bluebird');
 
-const type = {
+const {
+  graphql,
+  GraphQLObjectType,
+  GraphQLString,
+} = require('graphql');
 
-};
+const type = new GraphQLObjectType({
+  name: 'Section',
+  description: 'Section is composed of components',
+  fields: () => ({
+    title: {
+      type: GraphQLString,
+      description: 'The title of a component.',
+    },
+  }),
+});
 
 const sections = _.keyBy([
     {
@@ -28,9 +41,9 @@ const sectionBySectionId = _.keyBy(sections, 'sectionId');
 const sectionsByCourseId = _.groupBy(sections, 'courseId');
 
 const getters = {
-    getById: sectionId => BbPromise.resolve(sectionBysectionId[sectionId] || null),
+    getById: sectionId => BbPromise.resolve(sectionBySectionId[sectionId] || null),
 
-    getSectionBySectionId: sectionId => BbPromise.resolve(sectionBysectionId[sectionId] || null),
+    getSectionBySectionId: sectionId => BbPromise.resolve(sectionBySectionId[sectionId] || null),
     getSectionsByCourseId: courseId => BbPromise.resolve(sectionsByCourseId[courseId] || []),
 };
 
