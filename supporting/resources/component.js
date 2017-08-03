@@ -67,11 +67,11 @@ const componentsBySectionId = _.groupBy(components, 'sectionId');
 const componentsByCourseId = _.groupBy(components, 'courseId');
 
 const getters = {
+    all: () => BbPromise.resolve(components),
     getById: componentId => BbPromise.resolve(componentByComponentId[componentId] || null),
     
-    getComponentByComponentId: componentId => BbPromise.resolve(componentByComponentId[componentId] || null),
-    getComponentsBySectionId: sectionId => BbPromise.resolve(componentsBySectionId[sectionId] || []),
-    getComponentsByCourseId: courseId => BbPromise.resolve(componentsByCourseId[courseId] || []),
+    sectionId: sectionId => BbPromise.resolve(componentsBySectionId[sectionId] || []),
+    courseId: courseId => BbPromise.resolve(componentsByCourseId[courseId] || []),
 };
 
 module.exports = {

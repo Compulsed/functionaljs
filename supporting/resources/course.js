@@ -37,6 +37,7 @@ const courses = [
 const coursesByCourseId = _.keyBy(courses, 'courseId');
 
 const getters = {
+    all: () => BbPromise.resolve(courses),
     getById: courseId => BbPromise.resolve(coursesByCourseId[courseId] || null),
     
     getCourseByCourseId: courseId => BbPromise.resolve(coursesByCourseId[courseId] || null),

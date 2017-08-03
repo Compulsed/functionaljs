@@ -18,4 +18,14 @@ function courseDataTypeToGraphQLType(courseType) {
   }
 }
 
-module.exports = courseDataTypeToGraphQLType;
+async function getObjectsByType(type, args) {
+  const objects = await courseDataTypeToGraphQLType(type).getters.all();
+  const totalCount = objects.length;
+
+  return { objects, totalCount };
+}
+
+module.exports = {
+  courseDataTypeToGraphQLType,
+  getObjectsByType,
+};

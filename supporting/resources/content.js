@@ -80,6 +80,7 @@ const content = [
 const contentById = _.keyBy(content, 'contentId');
 
 const getters = {
+    all: () => BbPromise.resolve(content),
     getById: contentId => BbPromise.resolve(contentById[contentId] || null),
     
     getContentById: contentId => BbPromise.resolve(contentById[contentId] || null),

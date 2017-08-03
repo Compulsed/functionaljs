@@ -18,7 +18,7 @@ const type = new GraphQLObjectType({
   }),
 });
 
-const sections = _.keyBy([
+const sections = [
     {
         // Primary Key
         sectionId: 'csa-section-1',
@@ -35,12 +35,13 @@ const sections = _.keyBy([
         title: 'Installing Tools',
         sequenceId: 1,
     },
-], 'id');
+];
 
 const sectionBySectionId = _.keyBy(sections, 'sectionId');
 const sectionsByCourseId = _.groupBy(sections, 'courseId');
 
 const getters = {
+    all: () => BbPromise.resolve(sections),
     getById: sectionId => BbPromise.resolve(sectionBySectionId[sectionId] || null),
 
     getSectionBySectionId: sectionId => BbPromise.resolve(sectionBySectionId[sectionId] || null),
