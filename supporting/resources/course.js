@@ -1,5 +1,9 @@
 const _ = require('lodash');
 const BbPromise = require('bluebird');
+const { 
+    connectionFromUrls,
+    courseDataTypeToGraphQLType,
+ } = require('../index');
 
 const {
   GraphQLInt,
@@ -15,7 +19,12 @@ const type = new GraphQLObjectType({
     title: {
       type: GraphQLString,
       description: 'The title of a course.',
-    }
+    },
+    sectionConnection: connectionFromUrls(
+      'CourseSections',
+      'sections',
+      courseDataTypeToGraphQLType('section').type,
+    ),
   })
 });
 

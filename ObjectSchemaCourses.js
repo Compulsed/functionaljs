@@ -60,7 +60,7 @@ function rootConnection(name, courseDataType) {
       [courseDataType]: {
         type: new GraphQLList(graphqlType),
         resolve: conn => conn.edges.map(edge => edge.node),
-        description: ``,
+        description: ` `,
       },
     }),
   });
@@ -94,7 +94,7 @@ var schemaByObjects = new GraphQLSchema({
         allCourses: rootConnection('Course', 'course'),
         allSections: rootConnection('Section', 'section'),
         allComponents: rootConnection('Component', 'component'),
-        allContent: rootConnection('Content', 'content'),        
+        allContent: rootConnection('Content', 'content'),      
     },
   })
 });
@@ -102,61 +102,73 @@ var schemaByObjects = new GraphQLSchema({
 const run = async () => {
   var queryByObjects = `
     {
-        # Components
-        component (componentId: "csa-section-1-component-1") {
+        # Course
+        course (courseId: "aws-cda") {
           title
-        }
-
-        allComponents {
-          totalCount
-          component {
-            title
+          sectionConnection {
+            totalCount
+            sections {
+              title
+            }
           }
         }
+ 
+        #allCourses {
+        #  totalCount
+        #  course {
+        #    title
+        #    sectionConnection {
+        #      totalCount
+        #      sections {
+        #        title
+        #      }
+        #    }            
+        #  }
+        #}
 
         # Sections
-        section (sectionId: "csa-section-1") {
-          title
-        }
+        #section (sectionId: "csa-section-1") {
+        #  title
+        #}
 
-        allSections {
-          totalCount
-          section {
-            title
-          }
-        }
+        #allSections {
+        #  totalCount
+        #  section {
+        #    title
+        #  }
+        #}
 
-        # Course
-        course (courseId: "aws-csa") {
-          title
-        }
+        # Components
+        #component (componentId: "csa-section-1-component-1") {
+        #  title
+        #}
 
-        allCourses {
-          totalCount
-          course {
-            title
-          }
-        }
+        #allComponents {
+        #  totalCount
+        #  component {
+        #    title
+        #  }
+        #}        
 
         # Content
-        content (contentId: "123-123-123-124") {
-          contentId
-          videosources {
-            key
-            bucket
-          }
-        }
+        #content (contentId: "123-123-123-124") {
+        #  contentId
+        #  videosources {
+        #    key
+        #    bucket
+        #  }
+        #}
 
-        allContent {
-          totalCount
-          content {
-            contentId
-            videosources {
-              key
-              bucket
-            }            
-          }
-        }
+        #allContent {
+        #  totalCount
+        #  content {
+        #    contentId
+        #    videosources {
+        #      key
+        #      bucket
+        #    }            
+        #  }
+        #}
     }
     `;
 

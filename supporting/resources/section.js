@@ -24,7 +24,7 @@ const sections = [
         sectionId: 'csa-section-1',
         
         courseId: 'aws-csa',
-        title: 'Introduction',
+        title: 'CSA: Introduction',
         sequenceId: 0,
     },
     {
@@ -32,9 +32,27 @@ const sections = [
         sectionId: 'csa-section-1',
 
         courseId: 'aws-csa',
-        title: 'Installing Tools',
+        title: 'CSA: Installing Tools',
         sequenceId: 1,
     },
+
+    {
+        // Primary Key
+        sectionId: 'cda-section-1',
+        
+        courseId: 'aws-cda',
+        title: 'CDA: Introduction',
+        sequenceId: 0,
+    },
+
+    {
+        // Primary Key
+        sectionId: 'cda-section-1',
+
+        courseId: 'aws-cda',
+        title: 'CDA: Installing Tools',
+        sequenceId: 1,
+    },    
 ];
 
 const sectionBySectionId = _.keyBy(sections, 'sectionId');
@@ -44,8 +62,7 @@ const getters = {
     all: () => BbPromise.resolve(sections),
     getById: sectionId => BbPromise.resolve(sectionBySectionId[sectionId] || null),
 
-    getSectionBySectionId: sectionId => BbPromise.resolve(sectionBySectionId[sectionId] || null),
-    getSectionsByCourseId: courseId => BbPromise.resolve(sectionsByCourseId[courseId] || []),
+    courseId: courseId => BbPromise.resolve(sectionsByCourseId[courseId] || []),
 };
 
 module.exports = {
